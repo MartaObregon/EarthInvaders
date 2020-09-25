@@ -58,6 +58,12 @@ Earth´s Invaders is a game where the player has to move a UFO vertically trying
 - draw(){}
 - checkBeamBottom (){}
 
+# bird.js
+- bird (){this.x;this.y;this.direction)
+- draw (){}
+- move (){}
+- checkCollision(){}
+
 ## States y States Transitions
 Definition of the different states and their transition (transition functions)
 
@@ -84,6 +90,8 @@ Definition of the different states and their transition (transition functions)
 - game - addCow
 - beam - draw
 - beam - move
+- bird - draw
+- bird - move
 - game - checkCollision
 - game - GameOver
 - game - addEventListener
