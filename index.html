@@ -4,11 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Earth´s Invaders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
-    <img src="images/logo.png" alt="logo">
+    <header>
+        <div class="container">
+            <div class="container2">
+                <img src="images/logo2.png" alt="logo" class="logo">
+            </div>
+        
+        </div>
+        
+    </header>
+    <hr>
+    <section id="mid-section">
+        <div class = "left-side">
+            <div class="btn-section">
+                <button type="button" class="btn btn-secondary">Pause Game</button>
+                <button type="button" class="btn btn-secondary">Go to Menu</button>
+            </div>
+            <img src="images/alien2.png">
+        </div>
+          
+        
     <canvas id="gameCanvas" width="690" height="500"></canvas>
+        <img src="images/cloud.png" alt="cloud" class="cloud">
+        <img src ="images/alien1.png" alt="alien1" class="alien1">
+
+    
+
+    
+    </section>
+    
+    
     <script src="game.js"></script>
 </body>
 </html>
