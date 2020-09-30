@@ -1,7 +1,7 @@
 
 /* 4040cd */
 body{
-    background-color:grey;
+    background-color: grey;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +17,7 @@ header{
     box-shadow: #7cf305;
     border-width: 5px;
     border-radius: 50px;
-    /* border: solid black; */
+    border: groove white;
 }
 
 hr{
@@ -42,7 +42,7 @@ hr{
     box-shadow: #7cf305;
     border-width: 5px;
     border-radius: 50px;
-    /* border: solid black; */
+    border: groove white;
 
 }
 .container2{
@@ -60,65 +60,78 @@ hr{
     /* border: solid black; */
 }
 #mid-section{
-    margin-top: 100px;
-    width: 1077px;
-    /* display: flex;
-    justify-content: center;
-    flex-direction: row-reverse; */
-    position: relative;
+    margin-top: 0px;
+    width: 1108px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* position: relative; */
+}
+
+.alien-world{
+    width: 690px;
+    height: 500px;
 }
 
 .left-side{
+    width: 20px;
     display: flex;
-    flex-direction: column;
-    position: absolute;
-    /* top:50px; */
-    right: 970px;  
+    align-items: center;
+    flex-direction: column; 
+    margin-right: 100px;
+    position: relative;
 }
 .btn-section{
-    height: 300px;
+    height: 100px;
+    margin-top: 50px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-direction: column;
 }
 .left-side > img{
     height: 294px;
-   
-    
+    position: absolute;
+    top: 235px; 
 }
 
 .btn{
     width: 150px;
-    margin-left: 20px;
-    background-color: #cc3366;
+    background-image: url("images/fondo1.png");
+    border:groove white
 }
 #gameCanvas {
     width: 800px;
-    position: relative;
-    left:100px;
 
 }
-.cloud{
-    height: 300px;
-    width: 400px;
-    position: absolute; 
-    left: 850px;
-    bottom: ;
-  
+.right-side{
+    width: 250px;
+    height: 510px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.instructions {
+    width: 280px;
+    padding: 10px;
+    border: 2px groove white;
+    background-color:  #cc3366;
+    color: white
+    
 }
 
 .alien1{
-   position: absolute;
-   top:230px;
-   left:910px
+    position: absolute;
+    top: 160px;
+   
 }
+
 .logo{
     width: 350px;
     height: 210px;
-    display: flex;
    
 }
-h1{
-    background-color: #39065a;
-   
-}
+
