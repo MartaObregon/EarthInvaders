@@ -83,7 +83,7 @@ function createGameScreen(){
         <section id="mid-section">
             <div class = "left-side">
                 <div class="btn-section">
-                    <button type="button" class="btn btn-secondary" class="pause-btn">Pause Game</button>
+                    
                     <button type="button" class="btn btn-secondary" class="menu-btn">Go to Menu</button>
                 </div>
                 <img src="images/alien2.png">
@@ -125,7 +125,7 @@ function createGameScreen(){
     }
     
     function createGameOverScreen(){
-       let gameOverScreen = buildDom (`
+         gameOverScreen = buildDom (`
        <main>
        <div class ="game-over">
          <header>
@@ -165,22 +165,12 @@ function createGameScreen(){
     });
     }
 
-    // function removeGameOverScreen (){
-    //     gameOverScreen.remove();
-    // }
-
+  
     function startGame(){
         removeSplashScreen();
-        // removeGameOverScreen();
-
-        // gameScreen = createGameScreen();
-        // intervalId = setInterval(()=>{
-        //     timer++
-        //     requestAnimationFrame(start)
-        // },40)
         start()
 
-        // game.start()
+        
 
         
 

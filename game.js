@@ -144,6 +144,15 @@ function start(){
             cowY = canvas.height -60
         }
         }
+
+    function gameOver(){
+        canvas.remove();
+        let finish = document.createElement("h1")
+        finish.id="GAME OVER"
+        finish.innerText = "GAME OVER"
+        body.appendChild(finish)
+
+    }
         document.addEventListener('keydown', (event)=>{
                 console.log(event)
             if (event.key == 'ArrowRight'){
@@ -218,7 +227,7 @@ function start(){
             birds[i].x = birds[i].x-10
 
         
-
+            
         
 
             // if the ufo hits a bird
@@ -230,20 +239,22 @@ function start(){
                     ctx.drawImage(explosion,ufoX, ufoY, 100, 100)
                     explosionAudio.play()
                     explosionAudio.volume= 0.1
-                    clearInterval(intervalId)
+                     
+                    
                     setTimeout(()=>{
-                        alert('HIT')
-                    },100)
+                        gameOver()
+                        
+                    },500)
             }
             
                 // if the ufo crashes 
                 if (ufoY > canvas.height-50 ){
                     ctx.drawImage(explosion,ufoX-40, ufoY-50, 100, 100)
                     explosionAudio.play()
-                    clearInterval(intervalId)
+                    
                     
                     setTimeout(()=>{
-                        alert('CRASHED')
+                        gameOver()
                     },100)
                 }
             }
