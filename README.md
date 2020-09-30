@@ -106,7 +106,7 @@ Definition of the different states and their transition (transition functions)
 ### Git
 URls for the project repo and deploy
 [Link Repo](http://github.com)
-[Link Deploy](http://github.com)
+[Link Deploy] (https://martaobregon.github.io/EarthInvaders/)
 
 
 ### Slides
