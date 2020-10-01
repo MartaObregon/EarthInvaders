@@ -12,6 +12,8 @@ function main(){
     let splashScreen;
     let gameOverScreen;
     let winScreen;
+    
+    let trackAudio = new Audio("sounds/track.mp3")
 
 
     function createSplashScreen(){
@@ -108,6 +110,8 @@ function createGameScreen(){
      </main>`);
 
     document.body.appendChild(gameScreen);
+
+
     // let pauseBtn = gameScreen.querySelector(".pause-btn")
     // pauseBtn.addEventListener("click", function (){
     //     game.clearinterval(intervalId)
@@ -168,6 +172,8 @@ function createGameScreen(){
     });
     }
 
+    
+
     function createWinScreen(){
         winScreen = buildDom (`
         <main>
@@ -213,10 +219,14 @@ function createGameScreen(){
   
     function startGame(){
         removeSplashScreen();
+        trackAudio.volume = 0.3;
         start()
     }
   
     createSplashScreen();
+    trackAudio.play();
+    trackAudio.volume = 0.5;
+    
 }
 
 window.addEventListener("load", main);

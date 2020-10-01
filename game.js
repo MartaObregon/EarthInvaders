@@ -140,14 +140,15 @@ function start(){
         // }
     }
     function beamAim(){
-           // (rect1.x < rect2.x + rect2.width &&
-        //     rect1.x + rect1.width > rect2.x &&
-        //     rect1.y < rect2.y + rect2.height &&
-        //     rect1.y + rect1.height > rect2.y) 
-        if(ufoX < cowX + cowWidth &&
-            ufoX  > cowX &&
-            ufoY - 45 < cowY + cowHeight &&
-            ufoY - 45+300 > cowY){
+      
+        
+        // if(ufoX < cowX + cowWidth &&
+        //     ufoX  > cowX &&
+        //     ufoY - 45 < cowY + cowHeight &&
+        //     (ufoY - 45)+300 > cowY)
+            
+            if(ufoY > 180 &&((ufoX >= cowX && ufoX <= cowX + cowWidth) || (ufoX +ufoWidth >= cowX && ufoX +ufoWidth <= cowX +cowWidth)))
+            {
             IsBeamAiming = true
             console.log(`is beam aiming: ${IsBeamAiming}`)
             ctx.drawImage(beam, ufoX, ufoY - 45, 100, 300);
@@ -166,7 +167,7 @@ function start(){
             cowY = cowY -5
             mooAudio.play()
        
-        // }if(timer%100 === 0 ){drawCow()}
+
         }else{
             cowY = canvas.height -60
         }
@@ -198,16 +199,7 @@ function start(){
             cowX = cowWidth + Math.floor(Math.random()*canvas.width-cowWidth)
         }
 
-        // if(ufoX < cowX + cowWidth && 
-        //     ufoX + ufoWidth > cowX &&
-        //     ufoY < cowY + cowHeight &&
-        //     ufoY + ufoHeight > cowY){
-        //     isCowBeam = true
-        //     score =score+1
-        //     console.log(`is cow beamed: ${isCowBeam}`)
-        // }else{
-        //     console.log(`is cow beamed: ${isCowBeam}`)
-        // }
+     
     }
 
     function drawBirds(){
@@ -229,14 +221,7 @@ function start(){
             birds[i].x = birds[i].x-5
             
                 
-        // if (ufoY > canvas.height-50 ){
-        //     ctx.drawImage(explosion,ufoX-40, ufoY-50, 100, 100)
-        //     explosionAudio.play()
-        //     ufoY = ufoY-200
-        //     takeLive()
-            
-            
-        // }
+    
         }    
 
         checkBirdCollision()
@@ -251,16 +236,18 @@ function start(){
         
         
     }    
+  
+    
+    // function gameWin (){
+    //     if (score == 3){
+            
+    //         removeGameScreen();
+    //         createWinScreen();
+    //         clearInterval(intervalId);
+    //         document.querySelector(".end-score").innerText = `Your score: ${score}`
+    //     }
 
-    function gameWin (){
-        if (score > 7){
-            clearInterval(intervalId);
-            removeGameScreen();
-            createWinScreen();
-            document.querySelector(".end-score").innerText = `Your score: ${score}`
-        }
-
-    }
+    // }
        
     function drawCanvas (){
         ctx.drawImage(bg, 0, 0)
@@ -276,6 +263,7 @@ function start(){
         beamCow();
         checkCowCollision();
         drawBirds(); 
+        gameWin()
         
         
     }      
