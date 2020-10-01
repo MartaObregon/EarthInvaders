@@ -134,10 +134,10 @@ function start(){
         if(!IsBeamAiming){
             cowX = cowWidth + Math.floor(Math.random()*canvas.width-cowWidth);
         }
-        else{
-            cowX == cowX
+        // else{
+        //     cowX == canvas.height - 60
     
-        }
+        // }
     }
     function beamAim(){
            // (rect1.x < rect2.x + rect2.width &&
@@ -155,6 +155,7 @@ function start(){
             ufoAudio.volume = 0.1
         }else{
             IsBeamAiming=false
+            // cowY = canvas.height -60
             console.log(`is beam aiming: ${IsBeamAiming}`)
         }
     
@@ -165,8 +166,11 @@ function start(){
             cowY = cowY -5
             mooAudio.play()
        
-        }if(timer%100 === 0 ){drawCow()}
+        // }if(timer%100 === 0 ){drawCow()}
+        }else{
+            cowY = canvas.height -60
         }
+    }
     function checkBirdCollision(){
         for(let i = 0; i<birds.length;i++){
         if (ufoX < birds[i].x + birdWidth&&
@@ -176,8 +180,10 @@ function start(){
                 ctx.drawImage(explosion,ufoX, ufoY, 100, 100)
                 explosionAudio.play()
                 explosionAudio.volume= 0.1
-
-                numberOfLives -= 1
+                takeLive()
+                birds[i].x = -50
+                // birds.splice(i,1)
+                
             }
                 
                
@@ -185,30 +191,35 @@ function start(){
     }
 
     function checkCowCollision(){
-        // (rect1.x < rect2.x + rect2.width &&
-        //     rect1.x + rect1.width > rect2.x &&
-        //     rect1.y < rect2.y + rect2.height &&
-        //     rect1.y + rect1.height > rect2.y) 
-        if(ufoX < cowX + cowWidth && 
-            ufoX + ufoWidth > cowX &&
-            ufoY < cowY + cowHeight &&
-            ufoY + ufoHeight > cowY){
-            // cow.remove()
-            isCowBeam = true
-            console.log(`is cow beamed: ${isCowBeam}`)
-        }else{
-            console.log(`is cow beamed: ${isCowBeam}`)
+
+        if(cowY<canvas.height-200){
+            score++
+            cowY = canvas.height -60
+            cowX = cowWidth + Math.floor(Math.random()*canvas.width-cowWidth)
         }
+
+        // if(ufoX < cowX + cowWidth && 
+        //     ufoX + ufoWidth > cowX &&
+        //     ufoY < cowY + cowHeight &&
+        //     ufoY + ufoHeight > cowY){
+        //     isCowBeam = true
+        //     score =score+1
+        //     console.log(`is cow beamed: ${isCowBeam}`)
+        // }else{
+        //     console.log(`is cow beamed: ${isCowBeam}`)
+        // }
     }
 
     function drawBirds(){
+        console.log(canvas.height)
+        console.log()
         for (let i = 0; i<birds.length; i++){
             let constant = 200
             
-            if (birds[i].x == 30){
+            if (birds[i].x == -50){
                 birds.push({
                     x: canvas.width+birdHeight,
-                    y: (Math.floor(Math.random()* canvas.height - 200)) 
+                    y: (Math.floor(150 +Math.random()* 200 )) 
                 })
 
             }
@@ -216,34 +227,30 @@ function start(){
             ctx.drawImage(bird1, birds[i].x, birds[i].y, birdWidth,birdHeight)
             ctx.drawImage(bird2, birds[i].x, birds[i].y - constant, birdWidth, birdHeight)
             birds[i].x = birds[i].x-5
-            checkBirdCollision()
-            if (ufoY > canvas.height-50 ){
-                ctx.drawImage(explosion,ufoX-40, ufoY-50, 100, 100)
-                explosionAudio.play()
+            
                 
-                
-                setTimeout(()=>{
-                    gameOver()
-                },100)
-            }
+        // if (ufoY > canvas.height-50 ){
+        //     ctx.drawImage(explosion,ufoX-40, ufoY-50, 100, 100)
+        //     explosionAudio.play()
+        //     ufoY = ufoY-200
+        //     takeLive()
+            
+            
+        // }
         }    
 
-        
+        checkBirdCollision()
     }
 
-    // function gameOver(){
-    //     clearInterval(intervalId)
-    //     // removeGameScreen();
-    //     createGameOverScreen();
-    //     document.querySelector('.end-score').innerText =`Your score: ${score}`
-
-    //     // canvas.remove();
-    //     // let finish = body.createElement("h1")
-    //     // finish.id="GameOver"
-    //     // finish.innerText = "GAME OVER"
-    //     // document.body.appendChild(finish)
-
-    // }
+    function takeLive () {
+        if(numberOfLives>0){
+            numberOfLives--
+        }else if(numberOfLives==0){
+            gameOver()
+        }
+        
+        
+    }    
 
     function gameWin (){
         if (score > 7){
@@ -252,65 +259,41 @@ function start(){
             createWinScreen();
             document.querySelector(".end-score").innerText = `Your score: ${score}`
         }
+
     }
+       
+    function drawCanvas (){
+        ctx.drawImage(bg, 0, 0)
+        ctx.drawImage(ufo, ufoX, ufoY, ufoWidth, ufoHeight);
+        ctx.drawImage(fg,0,canvas.height-50, fgWidth,fgHeight);
+        ctx.drawImage(cowImage, cowX, cowY, cowWidth, cowHeight);
+        ctx.font ='25px  Verdana '
+        ctx.fillStyle = 'white'
+        ctx.fillText(`Score:${score}  |  Lives: ${numberOfLives}`, 20, 30)
+        moveUfo();
+        if(isSpacebar){ctx.drawImage(beam, ufoX, ufoY - 45, 100, 300);}
+        if(timer%100 === 0 ){drawCow()}
+        beamCow();
+        checkCowCollision();
+        drawBirds(); 
         
-  
         
+    }      
         
+    intervalId = setInterval(()=>{
+        timer++
+        requestAnimationFrame(drawCanvas)
+        
+    },20) 
 
-        
-  
-        // if the ufo crashes 
-        // if (ufoY > canvas.height-50 ){
-        //     ctx.drawImage(explosion,ufoX-40, ufoY-50, 100, 100)
-        //     explosionAudio.play()
-            
-            
-        //     setTimeout(()=>{
-        //         gameOver()
-        //     },100)
-        // }
-        function drawCanvas (){
-            ctx.drawImage(bg, 0, 0)
-            ctx.drawImage(ufo, ufoX, ufoY, ufoWidth, ufoHeight);
-            ctx.drawImage(fg,0,canvas.height-50, fgWidth,fgHeight);
-            ctx.drawImage(cowImage, cowX, cowY, cowWidth, cowHeight);
-            ctx.font ='25px  Verdana '
-            ctx.fillStyle = 'white'
-            ctx.fillText(`Score:${score}  |  Lives: ${numberOfLives}`, 20, 30)
-            moveUfo();
-            if(isSpacebar){ctx.drawImage(beam, ufoX, ufoY - 45, 100, 300);}
-            if(timer%100 === 0 ){drawCow()}
-            beamCow();
-            checkCowCollision();
-            drawBirds(); 
-            
-            
-        }      
-        
-        intervalId = setInterval(()=>{
-            timer++
-            requestAnimationFrame(drawCanvas)
-            
-        },20) 
 
-        function showScore(){
-            if (isCowBeam){
-                score += 1
-            }
-            // else if( score >= 5){
-            //     clearInterval(intervalId)
-            //     gameWin()
-            //     winnerAudio.play()
-            // }
-        }
 
-        intervalIdTwo = setInterval(()=>{
-            // showScore()
-        }, 1000)
+    intervalIdTwo = setInterval(()=>{
+        
+    }, 1000)
 
        
-    }
+}
 
 
 
