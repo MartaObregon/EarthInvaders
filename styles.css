@@ -1,14 +1,17 @@
 
 /* 4040cd */
 body{
-    background-color: grey;
+    /* width: 1000px; */
+    background-color: #ccade8;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    height: 640px;
 }
 header{
-    width: 100%;
+    width: 1100px;
+    height: 100px;
     background-color: #cc3366;
     display: flex;
     align-items: center;
@@ -18,14 +21,9 @@ header{
     border-width: 5px;
     border-radius: 50px;
     border: groove white;
+    margin-top:50px;
 }
 
-hr{
-    width: 90%;
-    margin-top: 50px;
-    /* background-color: black; */
-    height: 3px
-}
 
 .container{
     background-image: url("images/fondo1.png");
@@ -33,6 +31,7 @@ hr{
     background-position: center;
     background-size: contain;
     width:90%;
+    height: 80px;
     margin-top: 10px;
     margin-bottom: 10px;
     display: flex;
@@ -49,7 +48,8 @@ hr{
     background-color: whitesmoke;
     margin-top: 10px;
     margin-bottom: 10px;
-    width:80%;
+    width:70%;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -101,7 +101,11 @@ hr{
 }
 #gameCanvas {
     width: 800px;
+    border: 7px groove white;
 
+}
+.alien-world{
+    border:7px groove white;
 }
 .right-side{
     width: 250px;
@@ -125,13 +129,13 @@ hr{
 
 .alien1{
     position: absolute;
-    top: 160px;
+    top: 150px;
    
 }
 
 .logo{
-    width: 350px;
-    height: 210px;
+    width: 260px;
+    height: 120px;
    
 }
 

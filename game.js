@@ -42,6 +42,8 @@ function start(){
     let winnerAudio= new Audio ('sounds/tada.mp3') 
     let ufoAudio = new Audio ('sounds/ufo.mp3')
     let explosionAudio = new Audio ('sounds/explosion.mp3')
+    let alienAudio = new Audio ('sounds/loserAlien.mp3');
+    let sadLoserAudio = new Audio ('sounds/SadLoser.mp3')
 
 
     // Images variables --------
@@ -88,10 +90,12 @@ function start(){
     document.addEventListener('keydown', (event)=>{
         if (event.key == 'ArrowRight'){
             isRightArrow = true;
-            moveUfo()
+            moveUfo();
+            
         }else if(event.key == 'ArrowLeft'){
             isLeftArrow = true
             moveUfo()
+            
         }else if(event.key == 'ArrowUp'){
             isUpArrow = true;
             moveUfo()
@@ -230,24 +234,38 @@ function start(){
     function takeLive () {
         if(numberOfLives>0){
             numberOfLives--
-        }else if(numberOfLives==0){
-            gameOver()
+        }else if(numberOfLives<1){
+           clearInterval(intervalId)
+           alienAudio.play()
+           
+
+           setTimeout(()=>{
+            sadLoserAudio.play()   
+            removeGameScreen();
+            createGameOverScreen();
+
+
+            
+           }, 1000)
+          
         }
         
         
     }    
   
     
-    // function gameWin (){
-    //     if (score == 3){
+    function checkScore(){
+        if (score > 4){
+            clearInterval(intervalId)
             
-    //         removeGameScreen();
-    //         createWinScreen();
-    //         clearInterval(intervalId);
-    //         document.querySelector(".end-score").innerText = `Your score: ${score}`
-    //     }
+            setTimeout(()=>{
+                winnerAudio.play();
+                removeGameScreen();
+                createWinScreen();
+            })
 
-    // }
+        }
+    }
        
     function drawCanvas (){
         ctx.drawImage(bg, 0, 0)
@@ -263,7 +281,9 @@ function start(){
         beamCow();
         checkCowCollision();
         drawBirds(); 
-        gameWin()
+        checkScore()
+       
+        
         
         
     }      

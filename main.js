@@ -1,5 +1,7 @@
 // BuildDom function
 let timer = 0
+let gameScreen
+let trackAudio = new Audio("sounds/track.mp3")
 function buildDom(htmlString){
     var div = document.createElement("div");
     div.innerHTML = htmlString;
@@ -13,7 +15,11 @@ function main(){
     let gameOverScreen;
     let winScreen;
     
-    let trackAudio = new Audio("sounds/track.mp3")
+    createSplashScreen();
+    trackAudio.play();
+    trackAudio.volume = 0.4;
+    
+    
 
 
     function createSplashScreen(){
@@ -71,7 +77,7 @@ function main(){
     // create game screen
 
 function createGameScreen(){
-    let gameScreen = buildDom(`
+    gameScreen = buildDom(`
      <main class="game game-container">
         <header>
             <div class="container">
@@ -111,122 +117,112 @@ function createGameScreen(){
 
     document.body.appendChild(gameScreen);
 
-
-    // let pauseBtn = gameScreen.querySelector(".pause-btn")
-    // pauseBtn.addEventListener("click", function (){
-    //     game.clearinterval(intervalId)
-    // })
-    // let menuBtn = gameScreen.querySelector(".menu-btn")
-    // menuBtn.addEventListener("click", function (){
-    //     removeGameScreen()
-    //     createSplashScreen()
-    // })
-
-   
-    
+       
 }
-    function removeGameScreen(){
-        gameScreen.remove();
-    }
-    
-    function createGameOverScreen(){
-         gameOverScreen = buildDom (`
-       <main>
-       <div class ="game-over">
-         <header>
-             <div class="container">
-                 <div class="container2">
-                     <img src="images/logo2.png" alt="logo" class="logo">
-                 </div>
-             </div>
-         </header>
-         <h1>GAME OVER!</h1>
-         <p class="end-score"></p>
-         <section id="mid-section">
-             <div class = "left-side">
-                 <div class="btn-section">
-                     <button type="button" class="btn btn-secondary" id="restart-btn">Restart</button>
-                 </div>
-                 <img src="images/alien2.png">
-             </div>
-             <img src="images/alienworld.jpg" class="alien-world">
-             <div class = "right-side">
-                 <div class = "cloud-text">
-                     <article class="instructions">
-                         <h2>NICE TRY!</h2>
-                     </article>
-                 </div>
-                 <img src ="images/alien1.png" alt="alien1" class="alien1">
-             </div>    
-         </section>
-       </div>  
-     </main>`);
-
-      document.body.appendChild(gameOverScreen);
-
-      let restartBtn = gameOverScreen.querySelector("button");
-      restartBtn.addEventListener("click", function (){
-        gameOverScreen.remove();
-        createGameScreen()
-        startGame();
-    });
-    }
-
-    
-
-    function createWinScreen(){
-        winScreen = buildDom (`
-        <main>
-        <div class ="game-over">
-          <header>
-              <div class="container">
-                  <div class="container2">
-                      <img src="images/logo2.png" alt="logo" class="logo">
-                  </div>
-              </div>
-          </header>
-          <h1>WINNER</h1>
-          <p class="end-score"></p>
-          <section id="mid-section">
-              <div class = "left-side">
-                  <div class="btn-section">
-                      <button type="button" class="btn btn-secondary" id="restart-btn">Restart</button>
-                  </div>
-                  <img src="images/alien2.png">
-              </div>
-              <img src="images/alienworld.jpg" class="alien-world">
-              <div class = "right-side">
-                  <div class = "cloud-text">
-                      <article class="instructions">
-                          <h2>YOU ARE A TRUE HERO!</h2>
-                      </article>
-                  </div>
-                  <img src ="images/alien1.png" alt="alien1" class="alien1">
-              </div>    
-          </section>
-        </div>  
-      </main>`);
- 
-       document.body.appendChild(winScreen);
- 
-       let restartBtn = winScreen.querySelector("button");
-       restartBtn.addEventListener("click", function (){
-            winScreen.remove();
-            createGameScreen();
-            startGame();
-     });
-    }
-  
     function startGame(){
         removeSplashScreen();
         trackAudio.volume = 0.3;
-        start()
+        start();
     }
-  
-    createSplashScreen();
-    trackAudio.play();
-    trackAudio.volume = 0.5;
+
+    
+    
     
 }
 
+function removeWinScreen(){
+    winScreen.remove();
+
+}
+function createWinScreen(){
+    winScreen = buildDom (`
+    <main>
+    <div class ="game-over">
+      <header>
+          <div class="container">
+              <div class="container2">
+                  <img src="images/logo2.png" alt="logo" class="logo">
+              </div>
+          </div>
+      </header>
+      <h1>WINNER</h1>
+      <p class="end-score"></p>
+      <section id="mid-section">
+          <div class = "left-side">
+              <div class="btn-section">
+                  <button type="button" class="btn btn-secondary" id="restart-btn">Restart</button>
+              </div>
+              <img src="images/alien2.png">
+          </div>
+          <img src="images/alienworld.jpg" class="alien-world">
+          <div class = "right-side">
+              <div class = "cloud-text">
+                  <article class="instructions">
+                      <h2>YOU ARE A TRUE HERO!</h2>
+                  </article>
+              </div>
+              <img src ="images/alien1.png" alt="alien1" class="alien1">
+          </div>    
+      </section>
+    </div>  
+  </main>`);
+
+   document.body.appendChild(winScreen);
+
+   let restartBtn = winScreen.querySelector("button");
+   restartBtn.addEventListener("click", function (){
+        removeWinScreen();
+        main()
+ });
+}
+function removeGameScreen(){
+    gameScreen.remove();
+    trackAudio.pause();
+}
+function removeGameOverScreen(){
+    gameOverScreen.remove();
+}
+
+function createGameOverScreen(){
+    gameOverScreen = buildDom (`
+  <main>
+  <div class ="game-over">
+    <header>
+        <div class="container">
+            <div class="container2">
+                <img src="images/logo2.png" alt="logo" class="logo">
+            </div>
+        </div>
+    </header>
+    <h1>GAME OVER!</h1>
+    <p class="end-score"></p>
+    <section id="mid-section">
+        <div class = "left-side">
+            <div class="btn-section">
+                <button type="button" class="btn btn-secondary" id="restart-btn">Restart</button>
+            </div>
+            <img src="images/alien2.png">
+        </div>
+        <img src="images/alienworld.jpg" class="alien-world">
+        <div class = "right-side">
+            <div class = "cloud-text">
+                <article class="instructions">
+                    <h2>NICE TRY!</h2>
+                </article>
+            </div>
+            <img src ="images/alien1.png" alt="alien1" class="alien1">
+        </div>    
+    </section>
+  </div>  
+</main>`);
+
+ document.body.appendChild(gameOverScreen);
+
+ let restartBtn = gameOverScreen.querySelector("button");
+ restartBtn.addEventListener("click", function (){
+   removeGameOverScreen()
+   main()
+   
+});
+}
 window.addEventListener("load", main);
