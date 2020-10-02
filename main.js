@@ -46,9 +46,9 @@ function main(){
                     <div class = "cloud-text">
                         <article class="instructions">
                             <h6>HELLO TERRICOLEAN!</h6>
-                            <p>We learnt that humans are eating cows!<br>
-                            THIS MUST BE STOP!
-                            Help us free the cows from their fatal fate
+                            <p>We´ve learnt that humans are eating cows!<br>
+                            THIS MUST BE STOP!<br>
+                            Help us free 5 cows from their fatal fate...
                             </p>
                         </article>
                     </div>
@@ -93,7 +93,7 @@ function createGameScreen(){
             <div class = "left-side">
                 <div class="btn-section">
                     
-                    <button type="button" class="btn btn-secondary" class="menu-btn">Go to Menu</button>
+                    
                 </div>
                 <img src="images/alien2.png">
             </div>
@@ -145,8 +145,7 @@ function createWinScreen(){
               </div>
           </div>
       </header>
-      <h1>WINNER</h1>
-      <p class="end-score"></p>
+       
       <section id="mid-section">
           <div class = "left-side">
               <div class="btn-section">
@@ -154,7 +153,12 @@ function createWinScreen(){
               </div>
               <img src="images/alien2.png">
           </div>
-          <img src="images/alienworld.jpg" class="alien-world">
+          <div class="cow-img">
+          <div class="title container">
+              <h1 class="winner">WINNER</h1>
+          </div>
+          <img src = "images/dancing.gif" alt="dancingCow" class="dancing-cow">
+      </div>
           <div class = "right-side">
               <div class = "cloud-text">
                   <article class="instructions">
@@ -194,29 +198,36 @@ function createGameOverScreen(){
             </div>
         </div>
     </header>
-    <h1>GAME OVER!</h1>
+    
     <p class="end-score"></p>
     <section id="mid-section">
         <div class = "left-side">
             <div class="btn-section">
                 <button type="button" class="btn btn-secondary" id="restart-btn">Restart</button>
             </div>
-            <img src="images/alien2.png">
+            
         </div>
-        <img src="images/alienworld.jpg" class="alien-world">
+        <div class="cow-img">
+            <div class="title container">
+                <h1 class="gameover">GAME OVER!</h1>
+            </div>
+            <img src = "images/crazycow.png" alt="cow2" class="crazy-cow">
+        </div>
         <div class = "right-side">
+
             <div class = "cloud-text">
                 <article class="instructions">
                     <h2>NICE TRY!</h2>
                 </article>
             </div>
-            <img src ="images/alien1.png" alt="alien1" class="alien1">
+            
         </div>    
     </section>
   </div>  
 </main>`);
 
  document.body.appendChild(gameOverScreen);
+
 
  let restartBtn = gameOverScreen.querySelector("button");
  restartBtn.addEventListener("click", function (){

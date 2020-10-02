@@ -105,10 +105,10 @@ Definition of the different states and their transition (transition functions)
 
 ### Git
 URls for the project repo and deploy
-[Link Repo](http://github.com)
-[Link Deploy] (https://martaobregon.github.io/EarthInvaders/)
+[Link Repo](https://github.com/MartaObregon/EarthInvaders)
+[Link Deploy](https://martaobregon.github.io/EarthInvaders)
 
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Link Slides.com](https://docs.google.com/presentation/d/19bcwjftJCuNp9vkZlWXhZBaLpR-Mt0hzTBrEctsD8yI/edit#slide=id.g9da97e0795_0_0)
